@@ -1,16 +1,16 @@
 {
   "ingress": [
     {
-      "description": "Libera todo o trafego PostgreSQL",
+      "description": "Libera todo o trafego Vindo do Cluster ECS ",
       "from_port": 5432,
       "to_port": 5432,
       "protocol": "tcp",
-      "cidr_blocks": ["0.0.0.0/0"]
+      "security_groups": ["sg-01776422a93c297a8"]
     }
   ],
   "egress": [
     {
-      "description": "Allow All - Saida Trafego",
+      "description": "System Updates/Logs",
       "from_port": 0,
       "to_port": 0,
       "protocol": "-1",
