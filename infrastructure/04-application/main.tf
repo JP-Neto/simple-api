@@ -43,66 +43,45 @@ module "alb_api_jpn" {
 
 }
 
-/*
-#----------# Target Group development #-----------#
+
+
+#----------# Target Group #-----------#
 module "tg_api_jpn" {
   source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/target_group?ref=main"
-  
-  tg_name                       = var.tg_api_jpn_name
-  target_group_port             = var.tg_api_jpn_port
-  target_type                   = var.tg_api_jpn_target_type
-  target_group_protocol         = var.tg_api_jpn_protocol
-  target_group_protocol_version = var.tg_api_jpn_protocol_version   
-  vpc_id = data.terraform_remote_state.connectivity.outputs.vpc_id
 
-  tags = var.tg_api_jpn_tags
+  name     = var.tg_api_jpn_name
+  port     = var.tg_api_jpn_port
+  protocol = var.tg_api_jpn_protocol
+  vpc_id   = data.terraform_remote_state.connectivity.outputs.vpc_id  
 }
 
-#----------# Listerner development #-----------#
-module "alb_listener_jpn_443" {
-  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb_listener?ref=main"
-
+#----------# ALB Listener HTTP #-----------#
+module "alb_listener_http_api_jpn" {
+  source           = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb_listener?ref=main"
   lb_arn           = module.alb_api_jpn.lb_arn
-  port             = var.listener_api_jpn_port
-  protocol         = var.listener_api_jpn_protocol
-  ssl_policy       = var.listener_api_jpn_ssl_policy
-  certificate_arn  = var.listener_api_jpn_cert_arn
-  target_group_arn = module.tg_api_jpn.target_group_arn
-  
-  tags = merge(local.common_tags,var.listener_api_jpn_tags)
-
-  depends_on = [module.alb_api_jpn, module.tg_api_jpn]
+  port             = var.listener_http_port
+  protocol         = var.listener_http_protocol
+  target_group_arn = module.tg_api_jpn.arn
 }
-
-#----------# Listerner development - Port 80 #-----------#
-module "alb_listener_jpn_80" {
-  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb_listener?ref=main"
-
+/*
+#----------# ALB Listener HTTPS #-----------#
+module "alb_listener_https_api_jpn" {
+  source           = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb_listener?ref=main"
   lb_arn           = module.alb_api_jpn.lb_arn
-  port             = var.listener_api_jpn_80_port
-  protocol         = var.listener_api_jpn_80_protocol     
-  target_group_arn = module.tg_api_jpn.target_group_arn   
-  certificate_arn  = null 
-  ssl_policy       = null
-  tags             = merge(local.common_tags, var.listener_api_jpn_80_tags)
-  depends_on       = [module.alb_api_jpn]
-}
+  port             = var.listener_https_port
+  protocol         = var.listener_https_protocol
+  certificate_arn  = var.listener_certificate_arn
+  target_group_arn = module.tg_api_jpn.arn
+} 
 
-#----------# Listerner Rules development - Port 443 #-----------#
-module "listener_rule_443_1" {
+module "ssm_alb_arn" {
   source             = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb_listener_rule?ref=main"
-  listener_arn       = module.alb_listener_jpn_443.listener_https_arn
-  priority           = 1
-  target_group_arn   = module.tg_api_jpn.target_group_arn
-  host_header_values = ["kxc.jpn.cloud.com.br"]
-}
-
-module "listener_rule_443_2" {
-  source             = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb_listener_rule?ref=main"
-  listener_arn       = module.alb_listener_jpn_443.listener_https_arn
-  priority           = 2
-  target_group_arn   = module.tg_api_jpn.target_group_arn
-  host_header_values = ["kxc.jpn.cloud.com.br"]
+  name                    = var.name_ssm_alb_arn
+  description             = "PORTA xpto"
+  type                    = var.ssm_type["string"]
+  tags                    = var.tags_ssm_alb_arn
+  value                   = var.ssm_alb_arn
 }
 */
+
 
