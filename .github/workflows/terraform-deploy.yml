@@ -37,7 +37,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }} # Ajustado para ler da Secret
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }} 
           aws-region: us-east-1
 
       - name: Setup Terraform
@@ -48,14 +48,18 @@ jobs:
       - name: Terraform Init
         run: |
           TARGET_DIR="${{ github.workspace }}/infrastructure/${{ github.event.inputs.module }}"
+          
+          cd "$TARGET_DIR"
+
+          rm -rf .terraform/modules
+          
           RAW_MODULE_NAME="${{ github.event.inputs.module }}"
           CLEAN_NAME=$(echo $RAW_MODULE_NAME | sed 's/^[0-9]*-//')
           
-          cd "$TARGET_DIR"
-          
           terraform init \
             -backend-config="key=jpn/${{ github.event.inputs.environment }}/${CLEAN_NAME}.tfstate" \
-            -reconfigure
+            -reconfigure \
+            -upgrade
 
       - name: Terraform Plan
         id: plan
