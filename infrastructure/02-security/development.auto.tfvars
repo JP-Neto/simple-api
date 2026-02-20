@@ -9,7 +9,7 @@ tags_sg_ecs = {
 }
 
 #---SG RDS POSTGRES ---#
-name_sg_rds_postgres        = "sg-rds-postgres"
+name_sg_rds_postgres        = "rds-sg-postgres"
 description_sg_rds_postgres = "Permite acesso ao Postgres"
 
 tags_sg_rds_postgres = {
