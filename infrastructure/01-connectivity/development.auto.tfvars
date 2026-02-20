@@ -8,7 +8,7 @@ tags_vpc_jpn = {
 
 #----------# Public Subnets #-----------#
 subnet_cidr_blocks_jpn_public = ["10.0.0.0/20", "10.0.16.0/20"]
-public_subnet_jpn_names       = ["-public-us-east-1a", "-public-us-east-1b"]
+public_subnet_jpn_names       = ["public-us-east-1a", "public-us-east-1b"]
 availability_zones_jpn_public = ["us-east-1a", "us-east-1b"]
 
 tags_public_jpn_subnet = {
@@ -28,7 +28,7 @@ tags_rt_jpn_public = {
 
 #----------# Private Subnets #-----------#
 subnet_cidr_blocks_jpn_private = ["10.0.128.0/20", "10.0.144.0/20"]
-private_subnet_jpn_names       = ["-private-us-east-1a", "-private-us-east-1b"]
+private_subnet_jpn_names       = ["private-us-east-1a", "private-us-east-1b"]
 availability_zones_jpn_private = ["us-east-1a", "us-east-1b"]
 
 tags_private_jpn_subnet = {

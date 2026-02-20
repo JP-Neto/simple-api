@@ -1,12 +1,7 @@
 #----------# VPC Outputs #-----------#
 output "vpc_id" {
   description = "ID da VPC de "
-  value       = module.vpc_jpn_.vpc_id
-}
-
-output "vpc_cidr_block" {
-  description = "O CIDR block da VPC"
-  value       = module.vpc_jpn_.vpc_cidr_block
+  value       = module.vpc_jpn.vpc_id
 }
 
 #----------# Subnet Outputs #-----------#
