@@ -21,6 +21,10 @@ const express = require('express');
         res.send(response)
     })
 
+    app.get('/health', (req, res) => {
+    res.status(200).send('OK');
+    });
+
     app.get('/connect', async (req, res) => {
         try {
             const client = new Client({
