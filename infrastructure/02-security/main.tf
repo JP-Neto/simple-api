@@ -11,7 +11,7 @@ module "sg_ecs" {
 
 #----------# SG PostgreSQL #-----------#
 module "sg_rds_postgres" {
-  source        = "git::https://github.com/twinfo-io/devops-terraform-modulos.git//modules/aws/security/security-group?ref=main"
+  source        = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/security/security-group?ref=main"
   name          = var.name_sg_rds_postgres
   description   = var.description_sg_rds_postgres
   vpc_id        = data.terraform_remote_state.connectivity.outputs.vpc_id
