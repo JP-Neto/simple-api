@@ -4,7 +4,7 @@ variable "cluster_name_api_xpto" {
   type        = string
 }
 
-variable "arn_namespace_api_xpto" {
+variable "namespace_api_xpto" {
   description = "ARN do Cloud Map Namespace para Service Connect"
   type        = string
 }
@@ -42,20 +42,32 @@ variable "alb_type" {
 }
 
 variable "alb_enable_http2" {
-  type        = bool
+  type = bool
 }
 
 variable "alb_ip_address_type" {
-  type        = string
+  type = string
 }
 
 variable "alb_deletion_protection" {
-  type        = bool
+  type = bool
 }
 
 variable "alb_api_jpn_tags" {
   type        = map(string)
   description = "Tags completas do Load Balancer conforme console"
+}
+
+variable "access_logs_bucket" {
+  type = string
+}
+
+variable "access_logs_prefix" {
+  type = string
+}
+
+variable "access_logs_enabled" {
+  type = bool
 }
 
 #----------# Variáveis Target Group development #-----------#
@@ -65,23 +77,23 @@ variable "tg_api_jpn_name" {
 }
 
 variable "tg_api_jpn_port" {
-  type        = number
+  type = number
 }
 
 variable "tg_api_jpn_target_type" {
-  type        = string
+  type = string
 }
 
 variable "tg_api_jpn_protocol" {
-  type        = string
+  type = string
 }
 
 variable "tg_api_jpn_protocol_version" {
-  type        = string
+  type = string
 }
 
 variable "tg_api_jpn_tags" {
-  type        = map(string)
+  type = map(string)
 }
 
 ##----------# Variáveis Listener development #-----------#
