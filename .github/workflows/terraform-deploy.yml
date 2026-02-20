@@ -8,12 +8,18 @@ on:
         required: true
         default: 'development'
         type: choice
-        options: [production,development]
+        options: 
+          - production
+          - development
       module:
         description: 'Selecione o modulo'
         required: true
         type: choice
-        options: ['01-connectivity', '02-security', '03-databases', '04-application']
+        options: 
+          - '01-connectivity'
+          - '02-security'
+          - '03-databases'
+          - '04-application'
 
 permissions:
   id-token: write 
@@ -31,7 +37,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ AWS_ROLE_ARN }}
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }} # Ajustado para ler da Secret
           aws-region: us-east-1
 
       - name: Setup Terraform
@@ -41,16 +47,9 @@ jobs:
 
       - name: Terraform Init
         run: |
-          # 1. Define o diretório físico onde os arquivos estão
           TARGET_DIR="${{ github.workspace }}/infrastructure/${{ github.event.inputs.module }}"
-          
-          # 2. Lógica para limpar o nome da KEY (Remove '01-', '02-', etc)
-          # Exemplo: '01-connectivity' vira 'connectivity'
           RAW_MODULE_NAME="${{ github.event.inputs.module }}"
           CLEAN_NAME=$(echo $RAW_MODULE_NAME | sed 's/^[0-9]*-//')
-          
-          echo "Diretório alvo: $TARGET_DIR"
-          echo "Key do State detectada: jpn/${{ github.event.inputs.environment }}/${CLEAN_NAME}.tfstate"
           
           cd "$TARGET_DIR"
           
@@ -68,7 +67,6 @@ jobs:
           
           if [ ! -f "$VAR_FILE" ]; then
             echo "ERRO: O arquivo $VAR_FILE não foi encontrado em $(pwd)"
-            ls -la
             exit 1
           fi
 
