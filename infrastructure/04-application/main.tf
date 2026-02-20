@@ -43,8 +43,6 @@ module "alb_api_jpn" {
 
 }
 
-
-
 #----------# Target Group #-----------#
 module "tg_api_jpn" {
   source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/target_group?ref=main"
@@ -74,6 +72,8 @@ module "alb_listener_https_api_jpn" {
   target_group_arn = module.tg_api_jpn.arn
 } 
 */
+
+#--- Parameter Store ---#
 
 # API_PORT
 module "ssm_api_port" {
@@ -125,7 +125,7 @@ module "ssm_db_user" {
   value       = var.ssm_db_user
 }
 
-# DB_PASSWORD (SecureString)
+# DB_PASSWORD 
 module "ssm_db_password" {
   source      = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/ssm?ref=main"
   name        = var.name_ssm_db_password
