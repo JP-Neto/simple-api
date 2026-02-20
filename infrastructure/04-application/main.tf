@@ -73,15 +73,64 @@ module "alb_listener_https_api_jpn" {
   certificate_arn  = var.listener_certificate_arn
   target_group_arn = module.tg_api_jpn.arn
 } 
-
-module "ssm_alb_arn" {
-  source             = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb_listener_rule?ref=main"
-  name                    = var.name_ssm_alb_arn
-  description             = "PORTA xpto"
-  type                    = var.ssm_type["string"]
-  tags                    = var.tags_ssm_alb_arn
-  value                   = var.ssm_alb_arn
-}
 */
 
+# API_PORT
+module "ssm_api_port" {
+  source      = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/ssm?ref=main"
+  name        = var.name_ssm_api_port
+  description = "Porta da API Node"
+  type        = var.ssm_type["string"]
+  tags        = var.tags_ssm_api_port
+  value       = var.ssm_api_port
+}
 
+# DB_DATABASE
+module "ssm_db_database" {
+  source      = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/ssm?ref=main"
+  name        = var.name_ssm_db_database
+  description = "Nome do database PostgreSQL"
+  type        = var.ssm_type["string"]
+  tags        = var.tags_ssm_db_database
+  value       = var.ssm_db_database
+}
+
+# DB_HOST
+module "ssm_db_host" {
+  source      = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/ssm?ref=main"
+  name        = var.name_ssm_db_host
+  description = "Endpoint do banco PostgreSQL"
+  type        = var.ssm_type["string"]
+  tags        = var.tags_ssm_db_host
+  value       = var.ssm_db_host
+}
+
+# DB_PORT
+module "ssm_db_port" {
+  source      = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/ssm?ref=main"
+  name        = var.name_ssm_db_port
+  description = "Porta do banco PostgreSQL"
+  type        = var.ssm_type["string"]
+  tags        = var.tags_ssm_db_port
+  value       = var.ssm_db_port
+}
+
+# DB_USER
+module "ssm_db_user" {
+  source      = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/ssm?ref=main"
+  name        = var.name_ssm_db_user
+  description = "Usuário do banco PostgreSQL"
+  type        = var.ssm_type["string"]
+  tags        = var.tags_ssm_db_user
+  value       = var.ssm_db_user
+}
+
+# DB_PASSWORD (SecureString)
+module "ssm_db_password" {
+  source      = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/ssm?ref=main"
+  name        = var.name_ssm_db_password
+  description = "Senha do banco PostgreSQL"
+  type        = var.ssm_type["secure_string"]
+  tags        = var.tags_ssm_db_password
+  value       = var.ssm_db_password
+}

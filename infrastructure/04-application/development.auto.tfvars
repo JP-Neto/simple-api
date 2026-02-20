@@ -4,7 +4,7 @@
 
 cluster_name_api_xpto = "ecs-api-xpto"
 namespace_api_xpto    = "api-xpto.local"
-insights_api_xpto     = true
+insights_api_xpto     = false
 capacity_api_xpto     = ["FARGATE", "FARGATE_SPOT"]
 
 tags_api_xpto = {
@@ -54,3 +54,57 @@ listener_https_port     = 443
 listener_https_protocol = "HTTPS"
 
 listener_certificate_arn = null
+
+
+
+############################
+# SSM Parameter Store
+############################
+ssm_type = {
+  string        = "String"
+  secure_string = "SecureString"
+}
+
+# API
+name_ssm_api_port = "/simple-api/dev/API_PORT"
+ssm_api_port      = "3000"
+tags_ssm_api_port = {
+  Environment = "dev"
+  Application = "simple-api"
+}
+
+# DB
+name_ssm_db_database = "/simple-api/dev/DB_DATABASE"
+ssm_db_database      = "apinodedb"
+tags_ssm_db_database = {
+  Environment = "dev"
+  Application = "simple-api"
+}
+
+name_ssm_db_host = "/simple-api/dev/DB_HOST"
+ssm_db_host      = "rds-development.cwpw8a6wugta.us-east-1.rds.amazonaws.com"
+tags_ssm_db_host = {
+  Environment = "dev"
+  Application = "simple-api"
+}
+
+name_ssm_db_port = "/simple-api/dev/DB_PORT"
+ssm_db_port      = "5432"
+tags_ssm_db_port = {
+  Environment = "dev"
+  Application = "simple-api"
+}
+
+name_ssm_db_user = "/simple-api/dev/DB_USER"
+ssm_db_user      = "dbre"
+tags_ssm_db_user = {
+  Environment = "dev"
+  Application = "simple-api"
+}
+
+name_ssm_db_password = "/simple-api/dev/DB_PASSWORD"
+ssm_db_password      = "JpnCloud2026Postgres"
+tags_ssm_db_password = {
+  Environment = "dev"
+  Application = "simple-api"
+}

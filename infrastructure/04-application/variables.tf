@@ -128,3 +128,127 @@ variable "listener_certificate_arn" {
   description = "ARN do certificado ACM utilizado no listener HTTPS."
   type        = string
 }
+
+############################
+# SSM TYPES MAP
+############################
+
+variable "ssm_type" {
+  description = "Mapa com os tipos suportados pelo SSM Parameter Store."
+  type        = map(string)
+}
+
+############################
+# API_PORT
+############################
+
+variable "name_ssm_api_port" {
+  description = "Nome do parâmetro SSM para API_PORT."
+  type        = string
+}
+
+variable "ssm_api_port" {
+  description = "Valor da porta da aplicação Node."
+  type        = string
+}
+
+variable "tags_ssm_api_port" {
+  description = "Tags aplicadas ao parâmetro API_PORT."
+  type        = map(string)
+}
+
+############################
+# DB_DATABASE
+############################
+
+variable "name_ssm_db_database" {
+  description = "Nome do parâmetro SSM para DB_DATABASE."
+  type        = string
+}
+
+variable "ssm_db_database" {
+  description = "Nome do banco de dados PostgreSQL."
+  type        = string
+}
+
+variable "tags_ssm_db_database" {
+  description = "Tags aplicadas ao parâmetro DB_DATABASE."
+  type        = map(string)
+}
+
+############################
+# DB_HOST
+############################
+
+variable "name_ssm_db_host" {
+  description = "Nome do parâmetro SSM para DB_HOST."
+  type        = string
+}
+
+variable "ssm_db_host" {
+  description = "Endpoint do banco PostgreSQL."
+  type        = string
+}
+
+variable "tags_ssm_db_host" {
+  description = "Tags aplicadas ao parâmetro DB_HOST."
+  type        = map(string)
+}
+
+############################
+# DB_PORT
+############################
+
+variable "name_ssm_db_port" {
+  description = "Nome do parâmetro SSM para DB_PORT."
+  type        = string
+}
+
+variable "ssm_db_port" {
+  description = "Porta do banco PostgreSQL."
+  type        = string
+}
+
+variable "tags_ssm_db_port" {
+  description = "Tags aplicadas ao parâmetro DB_PORT."
+  type        = map(string)
+}
+
+############################
+# DB_USER
+############################
+
+variable "name_ssm_db_user" {
+  description = "Nome do parâmetro SSM para DB_USER."
+  type        = string
+}
+
+variable "ssm_db_user" {
+  description = "Usuário do banco PostgreSQL."
+  type        = string
+}
+
+variable "tags_ssm_db_user" {
+  description = "Tags aplicadas ao parâmetro DB_USER."
+  type        = map(string)
+}
+
+############################
+# DB_PASSWORD
+############################
+
+variable "name_ssm_db_password" {
+  description = "Nome do parâmetro SSM para DB_PASSWORD."
+  type        = string
+}
+
+variable "ssm_db_password" {
+  description = "Senha do banco PostgreSQL."
+  type        = string
+  sensitive   = true
+}
+
+variable "tags_ssm_db_password" {
+  description = "Tags aplicadas ao parâmetro DB_PASSWORD."
+  type        = map(string)
+}
