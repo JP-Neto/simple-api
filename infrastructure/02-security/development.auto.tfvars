@@ -1,8 +1,6 @@
-#------- Como foi feito import deste recurso, manter os mesmos nomes das variáveis para evitar conflitos. -------#
-
 #---SG ECS ---#
-name_sg_ecs        = "default"
-description_sg_ecs = "default VPC security group"
+name_sg_ecs        = "jpn-sg-ecs"
+description_sg_ecs = "SG Ecs Cluster"
 
 tags_sg_ecs = {
   Name        = "jpn-sg-ecs"
@@ -11,7 +9,7 @@ tags_sg_ecs = {
 }
 
 #---SG RDS POSTGRES ---#
-name_sg_rds_postgres        = "scg-rds-postgres"
+name_sg_rds_postgres        = "sg-rds-postgres"
 description_sg_rds_postgres = "Permite acesso ao Postgres"
 
 tags_sg_rds_postgres = {
@@ -19,4 +17,3 @@ tags_sg_rds_postgres = {
   Service     = "rds-postgres"
   Criticality = "high"
 }
-#------- Fim das variáveis importadas -------#
