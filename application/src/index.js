@@ -19,11 +19,7 @@ const express = require('express');
         const response = { 'message': "API OK!", 'request_id': i }
         console.log(response)
         res.send(response)
-    })
-
-    app.get('/health', (req, res) => {
-    res.status(200).send('OK');
-    });
+    })   
 
     app.get('/connect', async (req, res) => {
         try {
