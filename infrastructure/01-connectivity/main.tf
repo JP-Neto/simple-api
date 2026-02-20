@@ -48,12 +48,12 @@ module "jpn_rt_association_public" {
   route_table_ids = module.jpn_rt_public.route_table_ids
 }
 
-/*
+
 #------# Routes public to Internet Gateway #------#
 module "public_routes" {
   source         = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/network/route?ref=main"
   route_table_id = module.jpn_rt_public.route_table_id      
   routes_json    = file("${path.module}/routes/public.json")
 }
-*/
+
 

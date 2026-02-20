@@ -2,7 +2,7 @@ data "terraform_remote_state" "connectivity" {
   backend = "s3"
   config = {
     bucket  = "jpn-tfstate-s3"
-    key     = "connectivity/connectivity.tfstate"
+    key     = "jpn/development/connectivity.tfstate"
     region = "us-east-1"
   }
 }
