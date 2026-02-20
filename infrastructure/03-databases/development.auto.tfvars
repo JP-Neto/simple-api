@@ -8,7 +8,7 @@ db_instance_class    = "db.t3.micro"
 db_allocated_storage = 20
 
 db_username = "dbre"
-db_password = null
+db_password = "JpnCloud2026Postgres"
 
 #db_subnet_group_name = "development-db-subnet-group"
 db_availability_zone = "us-east-1a"
