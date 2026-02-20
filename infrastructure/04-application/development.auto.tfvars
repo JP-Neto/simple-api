@@ -1,8 +1,8 @@
 #----------# Configurações de api_xpto #-----------#
-cluster_name_api_xpto  = "jpn_api_xpto"
-arn_namespace_api_xpto = "arn:aws:servicediscovery:us-east-1:545009856687:namespace/ns-feiteanv6uzjkboe"
-insights_api_xpto      = false
-capacity_api_xpto      = ["FARGATE", "FARGATE_SPOT"]
+cluster_name_api_xpto = "jpn_api_xpto"
+namespace_api_xpto    = "ns-jpn"
+insights_api_xpto     = false
+capacity_api_xpto     = ["FARGATE", "FARGATE_SPOT"]
 
 tags_api_xpto = {
   Name        = "jpnapi_xpto"
@@ -12,12 +12,15 @@ tags_api_xpto = {
 
 #----------# Configurações do ALB development #-----------#
 
-api_jpn_name = "api-jpn-xpto"
-alb_internal           = false
-alb_type               = "application"
-alb_enable_http2       = true
-alb_ip_address_type    = "ipv4"
+api_jpn_name            = "api-jpn-xpto"
+alb_internal            = false
+alb_type                = "application"
+alb_enable_http2        = true
+alb_ip_address_type     = "ipv4"
 alb_deletion_protection = false
+access_logs_bucket      = ""
+access_logs_prefix      = null
+access_logs_enabled     = false
 
 alb_api_jpn_tags = {
   "Backup"      = "no"
@@ -25,7 +28,7 @@ alb_api_jpn_tags = {
   "CreatedBy"   = "devops"
   "Criticality" = "medium"
   "Department"  = "TI"
-  "Environment" = ""
+  "Environment" = "Development"
   "Lifecycle"   = "permanent"
   "Name"        = "jpn-load-balancer-"
   "Owner"       = "devops"
@@ -59,12 +62,12 @@ listener_api_jpn_ssl_policy = "ELBSecurityPolicy-TLS13-1-2-2021-06"
 listener_api_jpn_cert_arn   = "arn:aws:acm:us-east-1:545009856687:certificate/2f2d904a-2e5e-4075-9fcd-7036c30bd919"
 
 listener_api_jpn_tags = {
-  "Name"        = "listener-api-jpn-443"   
+  "Name" = "listener-api-jpn-443"
 }
 
 listener_api_jpn_80_port     = 80
 listener_api_jpn_80_protocol = "HTTP"
 
 listener_api_jpn_80_tags = {
-  "Name"        = "listener-api-jpn-80"
+  "Name" = "listener-api-jpn-80"
 }
