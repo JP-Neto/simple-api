@@ -17,19 +17,19 @@ module "jpn_subnet_public" {
 
 #----------# Public Route Table #-----------#
 module "jpn_rt_public" {
-  source       = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/network/route-table-lft?ref=main"
+  source       = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/network/route-table?ref=main"
   vpc_id       = module.vpc_jpn_.vpc_id
   tags         = merge(local.common_tags, var.tags_rt_jpn_public)
 }
 
 #----------# Public Route Table Association #-----------#
 module "jpn_rt_association_public_a" {
-  source          = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/network/route-table-association-lft?ref=main"
+  source          = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/network/route-table-association?ref=main"
   subnet_id       = module.jpn_subnet_public.subnet_id["-public-us-east-1a"]
   route_table_id  = module.jpn_rt_public.route_table_id
 }
 module "jpn_rt_association_public_b" {
-  source          = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/network/route-table-association-lft?ref=main"
+  source          = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/network/route-table-association?ref=main"
   subnet_id       = module.jpn_subnet_public.subnet_id["-public-us-east-1b"]
   route_table_id  = module.jpn_rt_public.route_table_id
 }
@@ -54,7 +54,7 @@ module "jpn_subnet_private" {
 
 #----------# Internet Gateway #-----------#
 module "internet_gateway" {
-  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/network/int-gateway?ref=main"
+  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/network/internet-gateway?ref=main"
   vpc_id = module.vpc_jpn_.vpc_id
   tags   = merge(local.common_tags, var.tags_internet_gateway)
 }
