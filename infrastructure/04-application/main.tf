@@ -24,7 +24,7 @@ module "ecs_capacity_api_xpto" {
 
   depends_on = [module.ecs_cluster_api_xpto]
 }
-/*
+
 #----------# ALB development - API XPTO #-----------#
 module "alb_api_jpn" {
   source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb?ref=main"
@@ -44,7 +44,7 @@ module "alb_api_jpn" {
   tags                       = var.alb_api_jpn_tags
 
 }
-*/
+
 #----------# Target Group #-----------#
 module "tg_api_jpn" {
   source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/target_group?ref=main"
