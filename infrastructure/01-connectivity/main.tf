@@ -1,5 +1,5 @@
 #----------# VPC #-----------#
-/*
+
 module "vpc_jpn" {
   source         = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/network/vpc?ref=main"
   vpc_cidr_block = var.vpc_cidr_block_jpn
@@ -56,6 +56,6 @@ module "public_routes" {
   route_table_id = module.jpn_rt_public.route_table_ids[0]     
   routes_json    = file("${path.module}/routes/public.json")
 }
-*/
+
 
 
