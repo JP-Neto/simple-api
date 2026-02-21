@@ -306,3 +306,27 @@ variable "compatibilities_api_xpto" {
   description = "Compatibilidades da task"
   type        = list(string)  
 }
+
+############################
+# Service - API XPTO
+############################
+
+variable "desired_tasks" {
+  description = "Quantidade de instâncias da Task a serem executadas"
+  type        = number  
+}
+
+variable "service_name" {
+  description = "Nome do Serviço"
+  type        = string
+}
+
+variable "servicetype" {
+  description = "Tipo de lançamento do serviço (ex: FARGATE ou EC2)"
+  type        = string
+}
+
+variable "assigin_ip" {
+  description = "Booleano para determinar se a Task recebe um IP público diretamente"
+  type        = bool  
+}
