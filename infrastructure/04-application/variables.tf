@@ -296,3 +296,13 @@ variable "log_group_api_xpto" {
 variable "aws_region" {
   type    = string  
 }
+
+variable "network_mode_api_xpto" {
+  description = "Modo de rede da Task (Fargate exige awsvpc)"
+  type        = string  
+}
+
+variable "compatibilities_api_xpto" {
+  description = "Compatibilidades da task"
+  type        = list(string)  
+}

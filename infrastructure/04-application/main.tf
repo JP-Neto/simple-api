@@ -164,12 +164,12 @@ module "task_definition_api_xpto" {
         }
       ]
       secrets = [
-        { name = "API_PORT",    valueFrom = module.ssm_api_port.ssm_arn },
-        { name = "DB_DATABASE", valueFrom = module.ssm_db_database.ssm_arn },
-        { name = "DB_HOST",     valueFrom = module.ssm_db_host.ssm_arn },
-        { name = "DB_PORT",     valueFrom = module.ssm_db_port.ssm_arn },
-        { name = "DB_USER",     valueFrom = module.ssm_db_user.ssm_arn },
-        { name = "DB_PASSWORD", valueFrom = module.ssm_db_password.ssm_arn }
+        { name = "API_PORT",    valueFrom = module.ssm_api_port.arn },
+        { name = "DB_DATABASE", valueFrom = module.ssm_db_database.arn },
+        { name = "DB_HOST",     valueFrom = module.ssm_db_host.arn },
+        { name = "DB_PORT",     valueFrom = module.ssm_db_port.arn },
+        { name = "DB_USER",     valueFrom = module.ssm_db_user.arn },
+        { name = "DB_PASSWORD", valueFrom = module.ssm_db_password.arn }
       ]
       logConfiguration = {
         logDriver = "awslogs"
