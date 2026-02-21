@@ -24,7 +24,7 @@ module "ecs_capacity_api_xpto" {
 
   depends_on = [module.ecs_cluster_api_xpto]
 }
-
+/*
 #----------# ALB development - API XPTO #-----------#
 module "alb_api_jpn" {
   source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb?ref=main"
@@ -63,7 +63,7 @@ module "alb_listener_http_api_jpn" {
   protocol         = var.listener_http_protocol
   target_group_arn = module.tg_api_jpn.arn
 }
-/*
+
 #----------# ALB Listener HTTPS #-----------#
 module "alb_listener_https_api_jpn" {
   source           = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb_listener?ref=main"
@@ -135,4 +135,53 @@ module "ssm_db_password" {
   type        = var.ssm_type["secure_string"]
   tags        = var.tags_ssm_db_password
   value       = var.ssm_db_password
+}
+
+
+#----------# ECS Task Definition - API XPTO #-----------#
+
+module "task_definition_api_xpto" {
+  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/ecs_task_definition?ref=main"
+
+  family                   = var.task_family_api_xpto
+  network_mode             = var.network_mode_api_xpto
+  requires_compatibilities = var.compatibilities_api_xpto
+  cpu                      = var.cpu_api_xpto
+  memory                   = var.memory_api_xpto
+  execution_role_arn       = data.terraform_remote_state.security.outputs.ecs_task_execution_role_arn
+  task_role_arn            = data.terraform_remote_state.security.outputs.ecs_task_role_arn
+
+  container_definitions = [
+    {
+      name      = var.container_name_api_xpto
+      image     = "${var.ecr_repository_url}:${var.container_image_tag}"
+      essential = true
+      portMappings = [
+        {
+          containerPort = var.tg_api_jpn_port
+          hostPort      = var.tg_api_jpn_port
+          protocol      = "tcp"
+        }
+      ]
+      secrets = [
+        { name = "API_PORT",    valueFrom = module.ssm_api_port.ssm_arn },
+        { name = "DB_DATABASE", valueFrom = module.ssm_db_database.ssm_arn },
+        { name = "DB_HOST",     valueFrom = module.ssm_db_host.ssm_arn },
+        { name = "DB_PORT",     valueFrom = module.ssm_db_port.ssm_arn },
+        { name = "DB_USER",     valueFrom = module.ssm_db_user.ssm_arn },
+        { name = "DB_PASSWORD", valueFrom = module.ssm_db_password.ssm_arn }
+      ]
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          "awslogs-group"         = var.log_group_api_xpto
+          "awslogs-region"        = var.aws_region
+          "awslogs-stream-prefix" = "ecs"
+          "awslogs-create-group"  = "true"
+        }
+      }
+    }
+  ]
+
+  tags = local.common_tags
 }
