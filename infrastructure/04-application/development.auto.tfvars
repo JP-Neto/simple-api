@@ -125,3 +125,11 @@ aws_region              = "us-east-2"
 network_mode_api_xpto   = "awsvpc"
 compatibilities_api_xpto = ["FARGATE"]
 
+############################
+# ECS Service - API XPTO
+############################
+service_name = "simple-api-task-service"
+desired_tasks = 1
+servicetype   = "FARGATE"
+assigin_ip    = true
+

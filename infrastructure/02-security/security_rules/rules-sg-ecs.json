@@ -20,6 +20,12 @@
       "to_port": 443,
       "protocol": "tcp",
       "cidr_blocks": ["0.0.0.0/0"]
+    },{
+      "description": "Libera entrada para o Servico ecs",
+      "from_port": 3000,
+      "to_port": 3000,
+      "protocol": "tcp",
+      "cidr_blocks": ["0.0.0.0/0"]
     }
   ],
   "egress": [

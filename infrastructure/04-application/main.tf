@@ -185,3 +185,24 @@ module "task_definition_api_xpto" {
 
   tags = local.common_tags
 }
+
+#----------# ECS Service - Public IP #-----------#
+
+module "ecs_service_api_xpto" {
+  
+  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/ecs-service?ref=main" 
+
+  service_name        = var.service_name
+  cluster_id          = module.ecs_cluster_api_xpto.cluster_id
+  task_definition_arn = module.task_definition_api_xpto.arn
+  desired_tasks       = var.desired_tasks
+  launch_type         = var.servicetype  
+  assign_public_ip    = var.assigin_ip   
+  subnet_ids = [
+    data.terraform_remote_state.connectivity.outputs.public_subnet_ids[0],
+    data.terraform_remote_state.connectivity.outputs.public_subnet_ids[1]
+  ]  
+  security_groups = [data.terraform_remote_state.security.outputs.sg_ecs_id]
+
+  tags = local.common_tags
+}
