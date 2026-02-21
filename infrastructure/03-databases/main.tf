@@ -1,4 +1,5 @@
 #--- DB Parameter Group ---#
+/*
 module "rds_parameter_group_jpn" {
   source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/database/parameter-group?ref=main"
   parameter_group_name        = var.parameter_group_name
@@ -40,3 +41,4 @@ module "rds_instance" {
   db_storage_encrypted   = var.db_storage_encrypted
   tags                   = merge(local.common_tags, var.rds_tags)
 }
+*/

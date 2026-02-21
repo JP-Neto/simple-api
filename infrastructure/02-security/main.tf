@@ -1,4 +1,5 @@
 #----------# SG ECS #-----------#
+/*
 module "sg_ecs" {
   source        = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/security/security-group?ref=main"
   name          = var.name_sg_ecs
@@ -19,3 +20,4 @@ module "sg_rds_postgres" {
   egress_rules  = jsondecode(file("${path.module}/security_rules/rules-sg-rds-postgres.json")).egress
   tags          = merge(local.common_tags, var.tags_sg_rds_postgres)
 }
+*/
