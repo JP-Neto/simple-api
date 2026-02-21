@@ -139,7 +139,7 @@ module "ssm_db_password" {
 
 
 #----------# ECS Task Definition - API XPTO #-----------#
-
+/*
 module "task_definition_api_xpto" {
   source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/ecs_task_definition?ref=main"
 
@@ -185,3 +185,4 @@ module "task_definition_api_xpto" {
 
   tags = local.common_tags
 }
+*/
