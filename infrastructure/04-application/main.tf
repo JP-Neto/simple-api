@@ -1,6 +1,6 @@
 
 #----------# ECS Cluster API XPTO #-----------#
-/*
+
 module "ecs_namespace_api_xpto" {
   source         = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/ecs_namespace?ref=main"
   namespace_name = var.namespace_api_xpto

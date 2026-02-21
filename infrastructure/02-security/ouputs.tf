@@ -1,4 +1,4 @@
-/*
+
 # #----------# Security Group ECS Outputs #-----------#
 
 output "sg_ecs_id" {
@@ -12,5 +12,3 @@ output "sg_rds_postgres_id" {
   description = "O ID do Security Group do RDS Postgres"
   value       = module.sg_rds_postgres.security_group_id
 }
-
-*/
