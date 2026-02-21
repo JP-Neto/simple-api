@@ -1,6 +1,6 @@
 {
   "default_igw": {
     "cidr_block": "0.0.0.0/0",
-    "gateway_id": "igw-0c78f3895a58fd9d2"
+    "gateway_id": "igw-02211091ae146061f"
   }
 }
