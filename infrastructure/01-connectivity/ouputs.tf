@@ -1,3 +1,4 @@
+/*
 #----------# VPC Outputs #-----------#
 output "vpc_id" {
   description = "ID da VPC de "
@@ -14,3 +15,4 @@ output "private_subnet_ids" {
   description = "Lista de IDs das Subnets Privadas"
   value       = values(module.jpn_subnet_private.subnet_id)
 }
+*/
