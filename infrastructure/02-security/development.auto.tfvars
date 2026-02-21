@@ -17,3 +17,7 @@ tags_sg_rds_postgres = {
   Service     = "rds-postgres"
   Criticality = "high"
 }
+
+
+ecs_execution_role  = "ecs-execution-role-api-xpto"
+ecs_task_role       = "ecs-task-role-api-xpto"

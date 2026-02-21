@@ -44,7 +44,7 @@ module "alb_api_jpn" {
   tags                       = var.alb_api_jpn_tags
 
 }
-
+*/
 #----------# Target Group #-----------#
 module "tg_api_jpn" {
   source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/target_group?ref=main"
@@ -63,7 +63,7 @@ module "alb_listener_http_api_jpn" {
   protocol         = var.listener_http_protocol
   target_group_arn = module.tg_api_jpn.arn
 }
-
+/*
 #----------# ALB Listener HTTPS #-----------#
 module "alb_listener_https_api_jpn" {
   source           = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb_listener?ref=main"

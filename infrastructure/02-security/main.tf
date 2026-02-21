@@ -20,3 +20,27 @@ module "sg_rds_postgres" {
   egress_rules  = jsondecode(file("${path.module}/security_rules/rules-sg-rds-postgres.json")).egress
   tags          = merge(local.common_tags, var.tags_sg_rds_postgres)
 }
+
+
+#----------# ECS Execution Role #-----------#
+module "ecs_execution_role" {
+  source                    =  "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/security/iam-role?ref=main"
+
+  role_name               = var.ecs_execution_role
+  assume_role_policy_json = file("${path.module}/policies/ecs_trust_policy.json")
+  policy_json             = file("${path.module}/policies/execution_policy.json")
+  
+  tags = local.common_tags
+}
+
+#----------# ECS Task Role #-----------#
+module "ecs_task_role" {
+  source                    =  "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/security/iam-role?ref=main"
+
+  role_name               = var.ecs_task_role
+  assume_role_policy_json = file("${path.module}/policies/ecs_trust_policy.json")
+  policy_json             = file("${path.module}/policies/task_policy.json")
+  
+  tags = local.common_tags
+}
+
