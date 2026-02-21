@@ -33,3 +33,14 @@ variable "tags_sg_rds_postgres" {
   type        = map(string)
   default     = {}
 }
+
+variable "ecs_execution_role" {
+  description = "Role par Execução da Task"
+  type        = string
+ 
+}
+variable "ecs_task_role" {
+  description = "Role para ecs Taks"
+  type        = string 
+}
+

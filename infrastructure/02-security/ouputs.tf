@@ -12,3 +12,12 @@ output "sg_rds_postgres_id" {
   description = "O ID do Security Group do RDS Postgres"
   value       = module.sg_rds_postgres.security_group_id
 }
+
+#----------# Outputs para o Remote State #-----------#
+output "ecs_task_execution_role_arn" {
+  value = module.ecs_execution_role.role_arn
+}
+
+output "ecs_task_role_arn" {
+  value = module.ecs_task_role.role_arn
+}
