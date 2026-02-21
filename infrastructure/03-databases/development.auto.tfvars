@@ -10,8 +10,7 @@ db_allocated_storage = 20
 db_username = "dbre"
 db_password = "JpnCloud2026Postgres"
 
-#db_subnet_group_name = "development-db-subnet-group"
-db_availability_zone = "us-east-1a"
+db_availability_zone = "us-east-2a"
 
 db_storage_encrypted            = true
 db_deletion_protection          = false
@@ -30,7 +29,6 @@ rds_tags = {
 #---- Parameter Group development ----#
 parameter_group_name        = "development-pg17"
 family                      = "postgres17"
-#parameter_group_description = "development PostgreSQL17"
 
 parameter_group_tags = {
   Name        = "development-pg17"
