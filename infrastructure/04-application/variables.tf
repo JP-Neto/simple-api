@@ -252,3 +252,47 @@ variable "tags_ssm_db_password" {
   description = "Tags aplicadas ao parâmetro DB_PASSWORD."
   type        = map(string)
 }
+
+############################
+# Task Definition - API XPTO
+############################
+
+variable "task_family_api_xpto" {
+  description = "Nome da familia da task"
+  type        = string  
+}
+
+variable "cpu_api_xpto" {
+  description = "CPU minima para Fargate"
+  type        = string  
+}
+
+variable "memory_api_xpto" {
+  description = "Memoria minima para Fargate"
+  type        = string  
+}
+
+variable "ecr_repository_url" {
+  description = "URL do repositorio ECR"
+  type        = string  
+}
+
+variable "container_image_tag" {
+  description = "Tag da imagem no ECR"
+  type        = string
+  default     = "latest"
+}
+
+variable "container_name_api_xpto" {
+  description = "Nome do container dentro da task"
+  type        = string  
+}
+
+variable "log_group_api_xpto" {
+  description = "Caminho dos logs no CloudWatch"
+  type        = string  
+}
+
+variable "aws_region" {
+  type    = string  
+}

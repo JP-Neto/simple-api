@@ -34,7 +34,7 @@ alb_api_jpn_tags = {
 ############################
 
 tg_api_jpn_name             = "tg-api-xpto-dev"
-tg_api_jpn_port             = 8080
+tg_api_jpn_port             = 3000
 tg_api_jpn_protocol         = "HTTP"
 tg_api_jpn_protocol_version = "HTTP1"
 
@@ -108,3 +108,18 @@ tags_ssm_db_password = {
   Environment = "dev"
   Application = "simple-api"
 }
+
+
+############################
+# Task Definition - API XPTO
+############################
+
+task_family_api_xpto    = "simple-api-task"
+cpu_api_xpto            = "256"      
+memory_api_xpto         = "512"      
+ecr_repository_url      = "simple-api"
+container_image_tag     = "latest"
+container_name_api_xpto = "simple-api-container"
+log_group_api_xpto      = "/ecs/simple-api-dev"
+aws_region              = "us-east-2"
+
