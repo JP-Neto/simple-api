@@ -8,8 +8,8 @@ tags_vpc_jpn = {
 
 #----------# Public Subnets #-----------#
 subnet_cidr_blocks_jpn_public = ["10.0.0.0/20", "10.0.16.0/20"]
-public_subnet_jpn_names       = ["public-us-east-1a", "public-us-east-1b"]
-availability_zones_jpn_public = ["us-east-1a", "us-east-1b"]
+public_subnet_jpn_names       = ["public-us-east-2a", "public-us-east-2b"]
+availability_zones_jpn_public = ["us-east-2a", "us-east-2b"]
 
 tags_public_jpn_subnet = {
   Criticality = "high"
@@ -17,8 +17,8 @@ tags_public_jpn_subnet = {
 
 #----------# Public Routing #-----------#
 public_jpn_name = {
-  "us-east-1a" = "jpn-rt-public-a"
-  "us-east-1b" = "jpn--rt-public-b"
+  "us-east-2a" = "jpn-rt-public-a"
+  "us-east-2b" = "jpn--rt-public-b"
 }
 
 tags_rt_jpn_public = {
@@ -28,8 +28,8 @@ tags_rt_jpn_public = {
 
 #----------# Private Subnets #-----------#
 subnet_cidr_blocks_jpn_private = ["10.0.128.0/20", "10.0.144.0/20"]
-private_subnet_jpn_names       = ["private-us-east-1a", "private-us-east-1b"]
-availability_zones_jpn_private = ["us-east-1a", "us-east-1b"]
+private_subnet_jpn_names       = ["private-us-east-2a", "private-us-east-2b"]
+availability_zones_jpn_private = ["us-east-2a", "us-east-2b"]
 
 tags_private_jpn_subnet = {
   Criticality = "high"
@@ -37,8 +37,8 @@ tags_private_jpn_subnet = {
 
 #----------# Private Routing #-----------#
 private_jpn_name = {
-  "us-east-1a" = "jpn-rt-private-a"
-  "us-east-1b" = "jpn--rt-private-b"
+  "us-east-2a" = "jpn-rt-private-a"
+  "us-east-2b" = "jpn--rt-private-b"
 }
 
 tags_rt_jpn_private = {
