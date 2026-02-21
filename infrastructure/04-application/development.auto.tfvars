@@ -122,4 +122,6 @@ container_image_tag     = "98c4d6a"
 container_name_api_xpto = "simple-api-container"
 log_group_api_xpto      = "/ecs/simple-api-dev"
 aws_region              = "us-east-2"
+network_mode_api_xpto   = "awsvpc"
+compatibilities_api_xpto = ["FARGATE"]
 
