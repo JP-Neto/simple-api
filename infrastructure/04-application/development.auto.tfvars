@@ -82,7 +82,7 @@ tags_ssm_db_database = {
 }
 
 name_ssm_db_host = "/simple-api/dev/DB_HOST"
-ssm_db_host      = "rds-development.cwpw8a6wugta.us-east-1.rds.amazonaws.com"
+ssm_db_host      = "rds-development.cdimoe6mg5r0.us-east-2.rds.amazonaws.com"
 tags_ssm_db_host = {
   Environment = "dev"
   Application = "simple-api"
