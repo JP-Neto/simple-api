@@ -232,7 +232,7 @@ module "lambda_deploy" {
   tags = local.common_tags
 }
 
-module "lambda_deploy" {
+module "lambda_task_deploy" {
   source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lambda?ref=main" 
   
   function_name = var.lambda_deploy_name2
