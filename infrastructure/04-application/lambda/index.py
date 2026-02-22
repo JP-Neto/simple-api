@@ -8,7 +8,7 @@ def lambda_handler(event, context):
     repo_name = event['detail']['repository-name']
     
     try:
-        # Apenas dispara. O CodeDeploy assume a comunicação daqui pra frente.
+        
         cd.create_deployment(
             applicationName='app-api-xpto',
             deploymentGroupName='dg-api-xpto',
