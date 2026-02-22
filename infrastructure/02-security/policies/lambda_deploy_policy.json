@@ -1,0 +1,39 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "CodeDeployAccess",
+            "Effect": "Allow",
+            "Action": [
+                "codedeploy:CreateDeployment",
+                "codedeploy:GetDeployment",
+                "codedeploy:RegisterApplicationRevision"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "PassRoleAccess",
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": [
+                "arn:aws:iam::196786876277:role/ecs-execution-role-api-xpto",
+                "arn:aws:iam::196786876277:role/ecs-task-role-api-xpto"
+            ],
+            "Condition": {
+                "StringLike": {
+                    "iam:PassedToService": "codedeploy.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Sid": "LoggingAccess",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:*:*:*"
+        }
+    ]
+}

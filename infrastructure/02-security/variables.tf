@@ -44,3 +44,7 @@ variable "ecs_task_role" {
   type        = string 
 }
 
+variable "lambda_deploy_role_name" {
+  description = "Nome da role para a Lambda de orquestração de deploy"
+  type        = string  
+}
