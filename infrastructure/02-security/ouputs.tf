@@ -21,3 +21,8 @@ output "ecs_task_execution_role_arn" {
 output "ecs_task_role_arn" {
   value = module.ecs_task_role.role_arn
 }
+
+
+output "lambda_deploy_role_arn" {
+  value = module.lambda_deploy_role.role_arn
+}
