@@ -51,7 +51,7 @@ module "lambda_deploy_role" {
   source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/security/iam-role?ref=main"
 
   role_name               = var.lambda_deploy_role_name
-  assume_role_policy_json = file("${path.module}/policies/lambda_trust_policy.json")
+  assume_role_policy_json = file("${path.module}/policies/lambda_deploy_trust_policy.json")
   policy_json             = file("${path.module}/policies/lambda_deploy_policy.json")
   
   tags = local.common_tags
