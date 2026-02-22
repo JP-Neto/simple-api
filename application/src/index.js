@@ -21,8 +21,8 @@ const express = require('express');
         res.send(response)
     })
     
-    app.get('/1', async (req, res) => {
-        const response = { 'message': "Teste CD com Lambda 2", 'request_id': i }
+    app.get('/deploy', async (req, res) => {
+        const response = { 'message': "Teste CD com Lambda", 'request_id': i }
         console.log(response)
         res.send(response)
     }) 
