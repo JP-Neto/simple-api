@@ -357,3 +357,17 @@ variable "lambda_deploy_name" {
   description = "Nome da Lambda"
   type        = string
 }
+
+############################
+# CodeDeploy 
+############################
+
+variable "cd_appname" {
+  description = "Nome do CodeDeploy "
+  type        = string
+}
+variable "dp_name" {
+  description = "Nome do Deployment Group"
+  type        = string
+}
+
