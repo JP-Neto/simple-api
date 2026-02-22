@@ -24,23 +24,23 @@ module "sg_rds_postgres" {
 
 #----------# ECS Execution Role #-----------#
 module "ecs_execution_role" {
-  source                    =  "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/security/iam-role?ref=main"
+  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/security/iam-role?ref=main"
 
   role_name               = var.ecs_execution_role
   assume_role_policy_json = file("${path.module}/policies/ecs_trust_policy.json")
   policy_json             = file("${path.module}/policies/execution_policy.json")
-  
+
   tags = local.common_tags
 }
 
 #----------# ECS Task Role #-----------#
 module "ecs_task_role" {
-  source                    =  "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/security/iam-role?ref=main"
+  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/security/iam-role?ref=main"
 
   role_name               = var.ecs_task_role
   assume_role_policy_json = file("${path.module}/policies/ecs_trust_policy.json")
   policy_json             = file("${path.module}/policies/task_policy.json")
-  
+
   tags = local.common_tags
 }
 
@@ -53,7 +53,7 @@ module "lambda_deploy_role" {
   role_name               = var.lambda_deploy_role_name
   assume_role_policy_json = file("${path.module}/policies/lambda_deploy_trust_policy.json")
   policy_json             = file("${path.module}/policies/lambda_deploy_policy.json")
-  
+
   tags = local.common_tags
 }
 
@@ -64,6 +64,6 @@ module "codedeploy_role" {
   role_name               = var.codedeploy_role
   assume_role_policy_json = file("${path.module}/policies/codedeploy_trust_policy.json")
   policy_json             = file("${path.module}/policies/codedeploy_policy.json")
-  
+
   tags = local.common_tags
 }

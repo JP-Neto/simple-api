@@ -259,22 +259,22 @@ variable "tags_ssm_db_password" {
 
 variable "task_family_api_xpto" {
   description = "Nome da familia da task"
-  type        = string  
+  type        = string
 }
 
 variable "cpu_api_xpto" {
   description = "CPU minima para Fargate"
-  type        = string  
+  type        = string
 }
 
 variable "memory_api_xpto" {
   description = "Memoria minima para Fargate"
-  type        = string  
+  type        = string
 }
 
 variable "ecr_repository_url" {
   description = "URL do repositorio ECR"
-  type        = string  
+  type        = string
 }
 
 variable "container_image_tag" {
@@ -285,26 +285,26 @@ variable "container_image_tag" {
 
 variable "container_name_api_xpto" {
   description = "Nome do container dentro da task"
-  type        = string  
+  type        = string
 }
 
 variable "log_group_api_xpto" {
   description = "Caminho dos logs no CloudWatch"
-  type        = string  
+  type        = string
 }
 
 variable "aws_region" {
-  type    = string  
+  type = string
 }
 
 variable "network_mode_api_xpto" {
   description = "Modo de rede da Task (Fargate exige awsvpc)"
-  type        = string  
+  type        = string
 }
 
 variable "compatibilities_api_xpto" {
   description = "Compatibilidades da task"
-  type        = list(string)  
+  type        = list(string)
 }
 
 ############################
@@ -313,7 +313,7 @@ variable "compatibilities_api_xpto" {
 
 variable "desired_tasks" {
   description = "Quantidade de instâncias da Task a serem executadas"
-  type        = number  
+  type        = number
 }
 
 variable "service_name" {
@@ -328,7 +328,7 @@ variable "servicetype" {
 
 variable "assigin_ip" {
   description = "Booleano para determinar se a Task recebe um IP público diretamente"
-  type        = bool  
+  type        = bool
 }
 
 
@@ -342,7 +342,7 @@ variable "topic_name" {
 
 variable "protocol" {
   description = "Protocolo para a assinatura (ex: email, sms, lambda, sqs)"
-  type        = string  
+  type        = string
 }
 
 variable "endpoint" {
@@ -362,6 +362,33 @@ variable "lambda_deploy_name2" {
   description = "Nome da Lambda"
   type        = string
 }
+variable "eb_rule" {
+  description = "Nome da regra do EventBridge (Rule) que filtrará os eventos de push do ECR."
+  type        = string
+}
+
+variable "repository_name" {
+  description = "Nome exato do repositório no Amazon ECR que disparará o gatilho de CD (ex: simple-api)."
+  type        = string
+}
+
+variable "eb_description" {
+  description = "Texto explicativo sobre a finalidade da regra do EventBridge para facilitar a auditoria no console AWS."
+  type        = string
+}
+
+variable "eventbridge_target" {
+  description = "Identificador único (Target ID) para o alvo da regra, vinculando a regra à função Lambda específica."
+  type        = string
+  default     = "InvokeLambdaCD"
+}
+
+variable "lambda_eventbridge_statement" {
+  description = "Identificador (Statement ID) da política baseada em recurso da Lambda, autorizando a invocação pelo EventBridge."
+  type        = string
+  default     = "AllowExecutionFromEventBridge"
+}
+
 
 
 ############################

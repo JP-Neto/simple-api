@@ -37,19 +37,19 @@ variable "tags_sg_rds_postgres" {
 variable "ecs_execution_role" {
   description = "Role par Execução da Task"
   type        = string
- 
+
 }
 variable "ecs_task_role" {
   description = "Role para ecs Taks"
-  type        = string 
+  type        = string
 }
 
 variable "lambda_deploy_role_name" {
   description = "Nome da role para a Lambda de orquestração de deploy"
-  type        = string  
+  type        = string
 }
 
 variable "codedeploy_role" {
   description = "Nome da role para o CodeDeploy"
-  type        = string  
+  type        = string
 }
