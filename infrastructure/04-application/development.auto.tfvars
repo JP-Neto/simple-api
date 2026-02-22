@@ -133,3 +133,12 @@ desired_tasks = 1
 servicetype   = "FARGATE"
 assigin_ip    = true
 
+
+
+############################
+# SNS | SNS Subscription - Lambda deploy
+############################
+
+topic_name   = "ecs-deploy-notifications"
+protocol     = "email"
+endpoint     = "contato@jpncloud.com.br"
