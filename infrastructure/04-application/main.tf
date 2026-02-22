@@ -1,4 +1,3 @@
-
 #----------# ECS Cluster API XPTO #-----------#
 
 module "ecs_namespace_api_xpto" {
@@ -230,5 +229,17 @@ module "lambda_deploy" {
   source_file = "${path.module}/lambda/index.py"
   role_arn      = data.terraform_remote_state.security.outputs.lambda_deploy_role_arn 
  
+  tags = local.common_tags
+}
+
+module "codedeploy_api_xpto" {
+  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/codedeploy?ref=main"
+  
+  app_name              = var.cd_appname
+  deployment_group_name = var.dp_name
+  cluster_name          = module.ecs_cluster_api_xpto.cluster_name
+  service_name          = module.ecs_service_api_xpto.service_name
+  codedeploy_role_arn   = data.terraform_remote_state.security.outputs.codedeploy_role_arn 
+
   tags = local.common_tags
 }

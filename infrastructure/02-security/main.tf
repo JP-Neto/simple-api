@@ -56,3 +56,14 @@ module "lambda_deploy_role" {
   
   tags = local.common_tags
 }
+
+#----------# CodeDeploy Role #-----------#
+module "codedeploy_role" {
+  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/security/iam-role?ref=main"
+
+  role_name               = var.codedeploy_role
+  assume_role_policy_json = file("${path.module}/policies/codedeploy_trust_policy.json")
+  policy_json             = file("${path.module}/policies/codedeploy_policy.json")
+  
+  tags = local.common_tags
+}

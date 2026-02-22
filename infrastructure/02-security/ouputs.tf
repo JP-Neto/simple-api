@@ -1,4 +1,3 @@
-
 # #----------# Security Group ECS Outputs #-----------#
 
 output "sg_ecs_id" {
@@ -22,7 +21,10 @@ output "ecs_task_role_arn" {
   value = module.ecs_task_role.role_arn
 }
 
-
 output "lambda_deploy_role_arn" {
   value = module.lambda_deploy_role.role_arn
+}
+
+output "codedeploy_role_arn" {
+  value = module.codedeploy_role.role_arn
 }

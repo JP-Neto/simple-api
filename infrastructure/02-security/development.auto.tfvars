@@ -22,4 +22,6 @@ tags_sg_rds_postgres = {
 ecs_execution_role  = "ecs-execution-role-api-xpto"
 ecs_task_role       = "ecs-task-role-api-xpto"
 
-lambda_deploy_role_name     = "lambda-deploy-role"
+lambda_deploy_role_name = "lambda-deploy-role"
+
+codedeploy_role         = "codedeploy-ecs-role"

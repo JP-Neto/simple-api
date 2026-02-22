@@ -48,3 +48,8 @@ variable "lambda_deploy_role_name" {
   description = "Nome da role para a Lambda de orquestração de deploy"
   type        = string  
 }
+
+variable "codedeploy_role" {
+  description = "Nome da role para o CodeDeploy"
+  type        = string  
+}
