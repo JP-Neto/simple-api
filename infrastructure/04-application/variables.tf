@@ -358,6 +358,12 @@ variable "lambda_deploy_name" {
   type        = string
 }
 
+variable "lambda_deploy_name2" {
+  description = "Nome da Lambda"
+  type        = string
+}
+
+
 ############################
 # CodeDeploy 
 ############################

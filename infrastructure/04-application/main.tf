@@ -23,7 +23,7 @@ module "ecs_capacity_api_xpto" {
 
   depends_on = [module.ecs_cluster_api_xpto]
 }
-
+/*
 #----------# ALB development - API XPTO #-----------#
 module "alb_api_jpn" {
   source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb?ref=main"
@@ -232,6 +232,21 @@ module "lambda_deploy" {
   tags = local.common_tags
 }
 
+module "lambda_deploy" {
+  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lambda?ref=main" 
+  
+  function_name = var.lambda_deploy_name2
+  source_file   = "${path.module}/lambda/index2.py"
+  role_arn      = data.terraform_remote_state.security.outputs.lambda_deploy_role_arn 
+  sns_topic_arn = module.sns_deploy_notifications.sns_topic_arn
+  cluster_name  = module.ecs_cluster_api_xpto.cluster_name
+  service_name  = module.ecs_service_api_xpto.service_name
+
+ 
+  tags = local.common_tags
+}
+
+/*
 module "codedeploy_api_xpto" {
   source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/codedeploy?ref=main"
   
@@ -243,3 +258,4 @@ module "codedeploy_api_xpto" {
 
   tags = local.common_tags
 }
+*/

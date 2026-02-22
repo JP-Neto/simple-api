@@ -2,6 +2,21 @@
     "Version": "2012-10-17",
     "Statement": [
         {
+            "Sid": "ECSServiceUpdate",
+            "Effect": "Allow",
+            "Action": [
+                "ecs:UpdateService",
+                "ecs:DescribeServices"
+            ],
+            "Resource": "arn:aws:ecs:us-east-2:196786876277:service/ecs-api-xpto/simple-api-task-service"
+        },
+        {
+            "Sid": "SNSAccess",
+            "Effect": "Allow",
+            "Action": "sns:Publish",
+            "Resource": "arn:aws:sns:us-east-2:196786876277:ecs-deploy-notifications"
+        },
+        {
             "Sid": "CodeDeployAccess",
             "Effect": "Allow",
             "Action": [
@@ -21,7 +36,10 @@
             ],
             "Condition": {
                 "StringLike": {
-                    "iam:PassedToService": "codedeploy.amazonaws.com"
+                    "iam:PassedToService": [
+                        "codedeploy.amazonaws.com",
+                        "ecs-tasks.amazonaws.com"
+                    ]
                 }
             }
         },

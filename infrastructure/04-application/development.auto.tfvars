@@ -146,5 +146,6 @@ endpoint     = "contato@jpncloud.com.br"
 
 
 lambda_deploy_name = "lambda-ecr-to-ecs-deploy"
+lambda_deploy_name2 = "lambda-update-task"
 dp_name            = "dg-api-xpto"
 cd_appname         = "app-api-xpto"
