@@ -2,29 +2,21 @@
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "ECSServiceUpdate",
+            "Sid": "ECSFullCDActions",
             "Effect": "Allow",
             "Action": [
-                "ecs:UpdateService",
-                "ecs:DescribeServices"
+                "ecs:DescribeServices",
+                "ecs:DescribeTaskDefinition",
+                "ecs:RegisterTaskDefinition",
+                "ecs:UpdateService"
             ],
-            "Resource": "arn:aws:ecs:us-east-2:196786876277:service/ecs-api-xpto/simple-api-task-service"
+            "Resource": "*"
         },
         {
             "Sid": "SNSAccess",
             "Effect": "Allow",
             "Action": "sns:Publish",
             "Resource": "arn:aws:sns:us-east-2:196786876277:ecs-deploy-notifications"
-        },
-        {
-            "Sid": "CodeDeployAccess",
-            "Effect": "Allow",
-            "Action": [
-                "codedeploy:CreateDeployment",
-                "codedeploy:GetDeployment",
-                "codedeploy:RegisterApplicationRevision"
-            ],
-            "Resource": "*"
         },
         {
             "Sid": "PassRoleAccess",
@@ -42,6 +34,16 @@
                     ]
                 }
             }
+        },
+        {
+            "Sid": "CodeDeployAccess",
+            "Effect": "Allow",
+            "Action": [
+                "codedeploy:CreateDeployment",
+                "codedeploy:GetDeployment",
+                "codedeploy:RegisterApplicationRevision"
+            ],
+            "Resource": "*"
         },
         {
             "Sid": "LoggingAccess",
