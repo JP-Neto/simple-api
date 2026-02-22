@@ -119,15 +119,15 @@ variable "db_performance_insights_enabled" {
 }
 
 variable "db_availability_zone" {
-  type    = string
+  type = string
 }
 
 variable "auto_minor_version_upgrade" {
-  type    = bool
+  type = bool
 }
 
 variable "copy_tags_to_snapshot" {
-  type    = bool
+  type = bool
 }
 
 variable "subnet_group_name_public" {

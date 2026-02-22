@@ -23,56 +23,65 @@ module "ecs_capacity_api_xpto" {
 
   depends_on = [module.ecs_cluster_api_xpto]
 }
-/*
+
 #----------# ALB development - API XPTO #-----------#
-module "alb_api_jpn" {
-  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb?ref=main"
+#module "alb_api_jpn" {
+#  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb?ref=main"
 
-  lb_name             = var.api_jpn_name
-  internal            = var.alb_internal
-  type                = var.alb_type
-  access_logs_enabled = var.access_logs_enabled
-  access_logs_bucket  = var.access_logs_bucket
-  access_logs_prefix  = var.access_logs_prefix
-  security_group_ids  = [data.terraform_remote_state.security.outputs.sg_ecs_id]
-  subnet_ids = [
-    data.terraform_remote_state.connectivity.outputs.public_subnet_ids[0],
-    data.terraform_remote_state.connectivity.outputs.public_subnet_ids[1]
-  ]
-  enable_deletion_protection = var.alb_deletion_protection
-  tags                       = var.alb_api_jpn_tags
+#  lb_name             = var.api_jpn_name
+#  internal            = var.alb_internal
+#  type                = var.alb_type
+#  access_logs_enabled = var.access_logs_enabled
+#  access_logs_bucket  = var.access_logs_bucket
+#  access_logs_prefix  = var.access_logs_prefix
+#  security_group_ids  = [data.terraform_remote_state.security.outputs.sg_ecs_id]
+#  subnet_ids = [
+#    data.terraform_remote_state.connectivity.outputs.public_subnet_ids[0],
+#    data.terraform_remote_state.connectivity.outputs.public_subnet_ids[1]
+#  ]
+#  enable_deletion_protection = var.alb_deletion_protection
+#  tags                       = var.alb_api_jpn_tags
 
-}
+#}
 
 #----------# Target Group #-----------#
-module "tg_api_jpn" {
-  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/target_group?ref=main"
-
-  name     = var.tg_api_jpn_name
-  port     = var.tg_api_jpn_port
-  protocol = var.tg_api_jpn_protocol
-  vpc_id   = data.terraform_remote_state.connectivity.outputs.vpc_id  
-}
+#module "tg_api_jpn" {
+#  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/target_group?ref=main"
+#  name     = var.tg_api_jpn_name
+#  port     = var.tg_api_jpn_port
+#  protocol = var.tg_api_jpn_protocol
+#  vpc_id   = data.terraform_remote_state.connectivity.outputs.vpc_id  
+#}
 
 #----------# ALB Listener HTTP #-----------#
-module "alb_listener_http_api_jpn" {
-  source           = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb_listener?ref=main"
-  lb_arn           = module.alb_api_jpn.lb_arn
-  port             = var.listener_http_port
-  protocol         = var.listener_http_protocol
-  target_group_arn = module.tg_api_jpn.arn
-}
-/*
+#module "alb_listener_http_api_jpn" {
+#  source           = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb_listener?ref=main"
+#  lb_arn           = module.alb_api_jpn.lb_arn
+#  port             = var.listener_http_port
+#  protocol         = var.listener_http_protocol
+#  target_group_arn = module.tg_api_jpn.arn
+#}
+
 #----------# ALB Listener HTTPS #-----------#
-module "alb_listener_https_api_jpn" {
-  source           = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb_listener?ref=main"
-  lb_arn           = module.alb_api_jpn.lb_arn
-  port             = var.listener_https_port
-  protocol         = var.listener_https_protocol
-  certificate_arn  = var.listener_certificate_arn
-  target_group_arn = module.tg_api_jpn.arn
-} 
-*/
+#module "alb_listener_https_api_jpn" {
+#  source           = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lb_listener?ref=main"
+#  lb_arn           = module.alb_api_jpn.lb_arn
+#  port             = var.listener_https_port
+#  protocol         = var.listener_https_protocol
+#  certificate_arn  = var.listener_certificate_arn
+#  target_group_arn = module.tg_api_jpn.arn
+#} 
+
+#module "codedeploy_api_xpto" {
+#  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/codedeploy?ref=main"
+#  app_name              = var.cd_appname
+#  deployment_group_name = var.dp_name
+#  cluster_name          = module.ecs_cluster_api_xpto.cluster_name
+#  service_name          = module.ecs_service_api_xpto.service_name
+#  codedeploy_role_arn   = data.terraform_remote_state.security.outputs.codedeploy_role_arn 
+#  tags = local.common_tags
+#}
+
 
 #--- Parameter Store ---#
 
@@ -163,11 +172,11 @@ module "task_definition_api_xpto" {
         }
       ]
       secrets = [
-        { name = "API_PORT",    valueFrom = module.ssm_api_port.arn },
+        { name = "API_PORT", valueFrom = module.ssm_api_port.arn },
         { name = "DB_DATABASE", valueFrom = module.ssm_db_database.arn },
-        { name = "DB_HOST",     valueFrom = module.ssm_db_host.arn },
-        { name = "DB_PORT",     valueFrom = module.ssm_db_port.arn },
-        { name = "DB_USER",     valueFrom = module.ssm_db_user.arn },
+        { name = "DB_HOST", valueFrom = module.ssm_db_host.arn },
+        { name = "DB_PORT", valueFrom = module.ssm_db_port.arn },
+        { name = "DB_USER", valueFrom = module.ssm_db_user.arn },
         { name = "DB_PASSWORD", valueFrom = module.ssm_db_password.arn }
       ]
       logConfiguration = {
@@ -188,19 +197,19 @@ module "task_definition_api_xpto" {
 #----------# ECS Service - Public IP #-----------#
 
 module "ecs_service_api_xpto" {
-  
-  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/ecs-service?ref=main" 
+
+  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/ecs-service?ref=main"
 
   service_name        = var.service_name
   cluster_id          = module.ecs_cluster_api_xpto.cluster_id
   task_definition_arn = module.task_definition_api_xpto.arn
   desired_tasks       = var.desired_tasks
-  launch_type         = var.servicetype  
-  assign_public_ip    = var.assigin_ip   
+  launch_type         = var.servicetype
+  assign_public_ip    = var.assigin_ip
   subnet_ids = [
     data.terraform_remote_state.connectivity.outputs.public_subnet_ids[0],
     data.terraform_remote_state.connectivity.outputs.public_subnet_ids[1]
-  ]  
+  ]
   security_groups = [data.terraform_remote_state.security.outputs.sg_ecs_id]
 
   tags = local.common_tags
@@ -208,54 +217,69 @@ module "ecs_service_api_xpto" {
 
 #----------# SNS Topic #-----------#
 module "sns_deploy_notifications" {
-  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/communication/sns_topic?ref=main" 
-  sns_topic_name = var.topic_name 
+  source         = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/communication/sns_topic?ref=main"
+  sns_topic_name = var.topic_name
   tags           = local.common_tags
 }
 
 #----------# SNS Subscription #-----------#
 module "sns_email_subscription" {
-  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/communication/sns_subscription?ref=main" 
-  
+  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/communication/sns_subscription?ref=main"
+
   sns_topic_arn = module.sns_deploy_notifications.sns_topic_arn
   protocol      = var.protocol
   endpoint      = var.endpoint
 }
 
 module "lambda_deploy" {
-  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lambda?ref=main" 
-  
+  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lambda?ref=main"
+
   function_name = var.lambda_deploy_name
-  source_file = "${path.module}/lambda/index.py"
-  role_arn      = data.terraform_remote_state.security.outputs.lambda_deploy_role_arn 
- 
+  source_file   = "${path.module}/lambda/index.py"
+  role_arn      = data.terraform_remote_state.security.outputs.lambda_deploy_role_arn
+
   tags = local.common_tags
 }
 
+#---- Lambda que faz o Deploy No task Definition, como a AWS não permite ainda a criação de ALB ---#
 module "lambda_task_deploy" {
-  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lambda2?ref=main" 
-  
+  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lambda2?ref=main"
+
   function_name = var.lambda_deploy_name2
   source_file   = "${path.module}/lambda/index2.py"
-  role_arn      = data.terraform_remote_state.security.outputs.lambda_deploy_role_arn 
+  role_arn      = data.terraform_remote_state.security.outputs.lambda_deploy_role_arn
   sns_topic_arn = module.sns_deploy_notifications.sns_topic_arn
   cluster_name  = module.ecs_cluster_api_xpto.cluster_name
   service_name  = module.ecs_service_api_xpto.service_name
 
- 
+
   tags = local.common_tags
 }
 
-/*
-module "codedeploy_api_xpto" {
-  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/codedeploy?ref=main"
+#----------# EventBridge #-----------#
+module "event_bridge_rule" {
+  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/management/eventbridge-trigger?ref=main"
+
+  rule_name       = var.eb_rule
+  description     = var.eb_description
+  repository_name = var.repository_name
+
+  tags = local.common_tags
+}
+
+module "eventbridge_target" {
+  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/management/eventbridge-target?ref=main"
+
   
-  app_name              = var.cd_appname
-  deployment_group_name = var.dp_name
-  cluster_name          = module.ecs_cluster_api_xpto.cluster_name
-  service_name          = module.ecs_service_api_xpto.service_name
-  codedeploy_role_arn   = data.terraform_remote_state.security.outputs.codedeploy_role_arn 
-
-  tags = local.common_tags
+  rule_name           = module.event_bridge_rule.event_rule_name 
+  lambda_function_arn = module.lambda_task_deploy.arn_lambda
+  target_id           = var.eventbridge_target
 }
-*/
+
+module "lambda_permission_eventbridge" {
+  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/management/lambda-permission?ref=main"
+
+  statement_id         = var.lambda_eventbridge_statement
+  lambda_function_name = var.lambda_deploy_name2 
+  event_rule_arn       = module.event_bridge_rule.event_rule_arn 
+}

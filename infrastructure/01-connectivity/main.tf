@@ -44,8 +44,8 @@ module "jpn_rt_public" {
 
 #----------# Public Route Table Association #-----------#
 module "jpn_rt_association_public" {
-  source         = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/network/route-table-association?ref=main"
-  subnet_ids     = values(module.jpn_subnet_public.subnet_id)
+  source          = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/network/route-table-association?ref=main"
+  subnet_ids      = values(module.jpn_subnet_public.subnet_id)
   route_table_ids = module.jpn_rt_public.route_table_ids
 }
 
@@ -53,7 +53,7 @@ module "jpn_rt_association_public" {
 #------# Routes public to Internet Gateway #------#
 module "public_routes" {
   source         = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/network/route?ref=main"
-  route_table_id = module.jpn_rt_public.route_table_ids[0]     
+  route_table_id = module.jpn_rt_public.route_table_ids[0]
   routes_json    = file("${path.module}/routes/public.json")
 }
 

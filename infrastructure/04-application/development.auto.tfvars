@@ -114,21 +114,21 @@ tags_ssm_db_password = {
 # Task Definition - API XPTO
 ############################
 
-task_family_api_xpto    = "simple-api-task"
-cpu_api_xpto            = "256"      
-memory_api_xpto         = "512"      
-ecr_repository_url      = "196786876277.dkr.ecr.us-east-2.amazonaws.com/simple-api"
-container_image_tag     = "98c4d6a"
-container_name_api_xpto = "simple-api-container"
-log_group_api_xpto      = "/ecs/simple-api-dev"
-aws_region              = "us-east-2"
-network_mode_api_xpto   = "awsvpc"
+task_family_api_xpto     = "simple-api-task"
+cpu_api_xpto             = "256"
+memory_api_xpto          = "512"
+ecr_repository_url       = "196786876277.dkr.ecr.us-east-2.amazonaws.com/simple-api"
+container_image_tag      = "98c4d6a"
+container_name_api_xpto  = "simple-api-container"
+log_group_api_xpto       = "/ecs/simple-api-dev"
+aws_region               = "us-east-2"
+network_mode_api_xpto    = "awsvpc"
 compatibilities_api_xpto = ["FARGATE"]
 
 ############################
 # ECS Service - API XPTO
 ############################
-service_name = "simple-api-task-service"
+service_name  = "simple-api-task-service"
 desired_tasks = 1
 servicetype   = "FARGATE"
 assigin_ip    = true
@@ -139,13 +139,21 @@ assigin_ip    = true
 # SNS | SNS Subscription - Lambda deploy
 ############################
 
-topic_name   = "ecs-deploy-notifications"
-protocol     = "email"
-endpoint     = "contato@jpncloud.com.br"
+topic_name = "ecs-deploy-notifications"
+protocol   = "email"
+endpoint   = "contato@jpncloud.com.br"
 
 
 
-lambda_deploy_name = "lambda-ecr-to-ecs-deploy"
+lambda_deploy_name  = "lambda-ecr-to-ecs-deploy"
 lambda_deploy_name2 = "lambda-update-task"
-dp_name            = "dg-api-xpto"
-cd_appname         = "app-api-xpto"
+dp_name             = "dg-api-xpto"
+cd_appname          = "app-api-xpto"
+
+
+eb_rule                      = "ecr-push-simple-api-rule"
+repository_name              = "simple-api"
+eb_description               = "Gatilho para CD: Detecta push com sucesso no ECR"
+eventbridge_target           = "InvokeLambdaCD"
+lambda_eventbridge_statement = "AllowSimpleAPICDTrigger"
+

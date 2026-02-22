@@ -3,7 +3,7 @@ terraform {
 
   backend "s3" {
     bucket  = "jpn-tfstate-s3"
-    key     = "security/security.tfstate"    
+    key     = "security/security.tfstate"
     region  = "us-east-1"
     encrypt = true
   }

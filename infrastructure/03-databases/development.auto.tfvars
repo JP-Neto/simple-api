@@ -18,8 +18,8 @@ db_performance_insights_enabled = true
 db_monitoring_interval          = 0
 monitoring_role_arn             = null
 publicly_accessible             = false
-auto_minor_version_upgrade = false
-copy_tags_to_snapshot      = true
+auto_minor_version_upgrade      = false
+copy_tags_to_snapshot           = true
 
 rds_tags = {
   Name        = "rds-development"
@@ -27,8 +27,8 @@ rds_tags = {
 }
 
 #---- Parameter Group development ----#
-parameter_group_name        = "development-pg17"
-family                      = "postgres17"
+parameter_group_name = "development-pg17"
+family               = "postgres17"
 
 parameter_group_tags = {
   Name        = "development-pg17"
