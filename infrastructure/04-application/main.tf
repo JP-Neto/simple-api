@@ -233,7 +233,7 @@ module "sns_deploy_notifications" {
 module "sns_email_subscription" {
   source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/communication/sns_subscription?ref=main" 
   
-  sns_topic_arn = module.sns_deploy_notifications.sns_topic_arn
+  topic_arn     = module.sns_deploy_notifications.sns_topic_arn
   protocol      = var.protocol
   endpoint      = var.endpoint
 }
