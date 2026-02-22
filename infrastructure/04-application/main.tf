@@ -233,7 +233,7 @@ module "lambda_deploy" {
 }
 
 module "lambda_task_deploy" {
-  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lambda?ref=main" 
+  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lambda2?ref=main" 
   
   function_name = var.lambda_deploy_name2
   source_file   = "${path.module}/lambda/index2.py"
