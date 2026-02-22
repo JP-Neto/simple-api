@@ -142,3 +142,7 @@ assigin_ip    = true
 topic_name   = "ecs-deploy-notifications"
 protocol     = "email"
 endpoint     = "contato@jpncloud.com.br"
+
+
+
+lambda_deploy_name = "lambda-ecr-to-ecs-deploy"

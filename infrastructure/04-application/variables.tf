@@ -349,3 +349,11 @@ variable "endpoint" {
   description = "O endpoint da assinatura (e-mail, número de telefone, ARN da lambda)"
   type        = string
 }
+
+############################
+# Lambda Deploy 
+############################
+variable "lambda_deploy_name" {
+  description = "Nome da Lambda"
+  type        = string
+}

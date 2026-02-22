@@ -207,21 +207,6 @@ module "ecs_service_api_xpto" {
   tags = local.common_tags
 }
 
-/*
-module "codedeploy_api_xpto" {
-  source = "./modules/aws/compute/codedeploy"
-
-  app_name              = "app-api-xpto"
-  deployment_group_name = "dg-api-xpto"
-  cluster_name          = module.ecs_cluster_api_xpto.cluster_name
-  service_name          = module.ecs_service_api_xpto.service_name
-  codedeploy_role_arn   = data.terraform_remote_state.security.outputs.codedeploy_role_arn # Role com permissões de ECS/S3/ECR
-
-  tags = local.common_tags
-}
-
-*/
-
 #----------# SNS Topic #-----------#
 module "sns_deploy_notifications" {
   source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/communication/sns_topic?ref=main" 
@@ -236,4 +221,14 @@ module "sns_email_subscription" {
   sns_topic_arn = module.sns_deploy_notifications.sns_topic_arn
   protocol      = var.protocol
   endpoint      = var.endpoint
+}
+
+module "lambda_deploy" {
+  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/lambda?ref=main" 
+  
+  function_name = var.lambda_deploy_name
+  source_file = "${path.module}/lambda/index.py"
+  role_arn      = data.terraform_remote_state.security.outputs.lambda_deploy_role_arn 
+ 
+  tags = local.common_tags
 }
