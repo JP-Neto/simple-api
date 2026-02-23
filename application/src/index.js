@@ -19,13 +19,8 @@ const express = require('express');
         const response = { 'message': "API OK!!", 'request_id': i }
         console.log(response)
         res.send(response)
-    })
-    
-    app.get('/opa', async (req, res) => {
-        const response = { 'message': "Teste CD com Lambdaa", 'request_id': i }
-        console.log(response)
-        res.send(response)
-    }) 
+    })   
+   
 
     app.get('/connect', async (req, res) => {
         try {
