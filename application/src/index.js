@@ -21,6 +21,11 @@ const express = require('express');
         res.send(response)
     })   
    
+     app.get('/1', async (req, res) => {
+        const response = { 'message': "APA Deu certo!!", 'request_id': i }
+        console.log(response)
+        res.send(response)
+    }) 
 
     app.get('/connect', async (req, res) => {
         try {
