@@ -139,7 +139,7 @@ Essa abordagem mantém o ambiente:
 ## 🛠️ Stack Tecnológica
 * **Aplicação:** Node.js (Express)
 * **Banco de Dados:** PostgreSQL (Amazon RDS)
-* **Deploy via Event-Driven (Lambda) :** PostgreSQL (Amazon RDS)
+* **Deploy via Event-Driven :** EventBridge + AWS Lambda
 * **IaC:** Terraform
 * **Container:** Docker (Amazon ECR + ECS Fargate)
 * **CI/CD:** GitHub Actions
