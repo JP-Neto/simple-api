@@ -82,6 +82,30 @@ module "ecs_capacity_api_xpto" {
 #  tags = local.common_tags
 #}
 
+#module "ecs_autoscaling" {
+#  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/appautoscaling_policy?ref=main"
+
+#  policy_name   = var.scaling_policy_name
+#  ecs_id        = "service/${module.ecs_cluster_api_xpto.cluster_name}/${module.ecs_service_api_xpto.service_name}"
+#  ecs_dimension = var.scaling_dimension
+#  ecs_namespace = var.namespace_api_xpto
+#  cpu_target_value   = var.scaling_cpu_target
+#  scale_in_cooldown  = var.scaling_scale_in_cooldown
+#  scale_out_cooldown = var.scaling_scale_out_cooldown
+#}
+
+#module "ecs_autoscaling_target" {
+#  source = "git::https://github.com/JP-Neto/Terraform-Multi-Cloud-Modules.git//modules/aws/compute/appautoscaling_target?ref=main"
+
+#  ecs_id        = "service/${module.ecs_cluster_api_xpto.cluster_name}/${module.ecs_service_api_xpto.service_name}"
+#  ecs_dimension = var.scaling_dimension
+#  ecs_namespace = var.namespace_api_xpto
+#  max_capacity  = var.ecs_max_capacity
+#  min_capacity  = var.ecs_min_capacity
+#}
+
+
+
 
 #--- Parameter Store ---#
 
